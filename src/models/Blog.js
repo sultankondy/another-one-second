@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 const blogSchema = new mongoose.Schema({
   image: {
     type: String,
-    required: true
   },
   title: {
     type: String,
@@ -11,11 +10,9 @@ const blogSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    required: true
   },
   address: {
     type: String,
-    required: true
   },
   createdAt: {
     type: Date,

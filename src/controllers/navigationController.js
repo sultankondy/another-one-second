@@ -2,7 +2,7 @@ const Navigation = require("../models/Navigation");
 
 const getNavigationsByTopic = async (req, res) => {
     try{
-        const nav = Navigation.findOne({topic: req.params.topic});
+        const nav = await Navigation.find({ topic: req.params.topic });
         res.status(200).json(nav);
     }catch(err) {
         res.status(500).json(err);
@@ -10,7 +10,11 @@ const getNavigationsByTopic = async (req, res) => {
 }
 
 const createNavigationsByTopic = async (req, res) => {
-    const newNav = new Navigation(req.body);
+    const newNav = new Navigation({
+        title: req.body.title,
+        link: req.body.link,
+        topic: req.params.topic,
+    });
     
     newNav.save()
         .then(() => {

@@ -9,3 +9,6 @@ router.route("/:topic")
 router.route("/:id")
     .put(navigationController.updateNavigationById)
     .delete(navigationController.deleteNavigationById);
+
+
+module.exports = router;

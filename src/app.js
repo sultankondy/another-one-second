@@ -11,7 +11,8 @@ const umraGuideRouter = require('./routes/umraGuide')
 const blogRouter = require('./routes/blog');
 const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
-const navigationRouter = require('./routes/navigation')
+const navigationRouter = require('./routes/navigation');
+const tasbihRouter = require('./routes/tasbih');
 
 
 
@@ -30,6 +31,7 @@ const run = async () => {
   app.use('/auth', authRouter);
   app.use('/users', userRouter);
   app.use('/navigation', navigationRouter);
+  app.use('/tasbihs', tasbihRouter); 
   app.use('/uploads', express.static('uploads'));
 
   app.listen(port, () => console.log(

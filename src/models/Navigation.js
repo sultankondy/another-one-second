@@ -18,6 +18,4 @@ const NavigationSChema = new mongoose.Schema({
 
 const Navigation = mongoose.model('Navigation', NavigationSChema);
 
-module.exports = {
-    Navigation
-}
+module.exports = Navigation
