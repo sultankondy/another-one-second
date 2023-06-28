@@ -30,7 +30,6 @@ router.post("/register", async (req, res) => {
 // LOGIN 
 
 router.post('/login', async (req, res) => {
-    res.json({message: "login"});
     try{
         const user = await User.findOne({ username: req.body.username });
         !user && res.status(401).json("Wrong credentials!");
@@ -56,21 +55,10 @@ router.post('/login', async (req, res) => {
 
         res.status(200).json({...others, accessToken});
     }catch(err) { 
-        //res.status(500).json(err); 
+        res.status(500).json(err); 
     }
     
 }); 
-
-router.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-      if (err) {
-        console.log('Error destroying session:', err);
-      } else {
-        res.redirect('/login'); // Redirect to the login page after logout
-      }
-    });
-  });
-  
 
 
 module.exports = router;
