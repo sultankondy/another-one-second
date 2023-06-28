@@ -1,33 +1,27 @@
 const mongoose = require('mongoose');
 
-
 const GuideSchema = new mongoose.Schema({
-  title: { type: String },
-  desc: { type: String },
+  title: {type: String},
+  questions: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "QuestionAnswer"
+  }]
 });
 
-const Guide = mongoose.model('Guide', GuideSchema);
+const Guide = mongoose.model("Guide", GuideSchema);
 
-
-const QuestionSchema = new mongoose.Schema({
-  title: { type: String, required: true },
-  author: { type: mongoose.Schema.Types.ObjectId, ref: 'Guide', required: true },
-  explanations: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Explanation' }],
+const QuestionAnswerSchema = new mongoose.Schema({
+  question: {type: String},
+  answer: [{type: String}],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Guide",
+  }
 });
 
-const Question = mongoose.model('Question', QuestionSchema);
-
-
-const ExplanationSchema = new mongoose.Schema({
-  content: { type: String, required: true },
-  author: { type: mongoose.Schema.Types.ObjectId, ref: 'Guide', required: true },
-  publication: { type: mongoose.Schema.Types.ObjectId, ref: 'Question', required: true },
-});
-
-const Explanation = mongoose.model('Explanation', ExplanationSchema);
+const QuestionAnswer = mongoose.model("QuestionAnswer", QuestionAnswerSchema);
 
 module.exports = {
-    Explanation,
-    Question,
-    Guide
+  Guide,
+  QuestionAnswer
 }

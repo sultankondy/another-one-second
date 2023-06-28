@@ -13,6 +13,8 @@ const userRouter = require('./routes/user');
 const authRouter = require('./routes/auth');
 const navigationRouter = require('./routes/navigation');
 const tasbihRouter = require('./routes/tasbih');
+const umraRouter = require('./routes/umra'); 
+const tourRouter = require('./routes/tour');
 
 
 
@@ -26,13 +28,16 @@ const run = async () => {
 
   app.use(express.json());
   app.use('/pray', prayRoute);
-  app.use('/umraguide', umraGuideRouter);
+  app.use('/guides', umraGuideRouter);
   app.use('/blogs', blogRouter);
   app.use('/auth', authRouter);
   app.use('/users', userRouter);
   app.use('/navigation', navigationRouter);
   app.use('/tasbihs', tasbihRouter); 
+  app.use('/umra', umraRouter);
+  app.use('/tour', tourRouter);
   app.use('/uploads', express.static('uploads'));
+
 
   app.listen(port, () => console.log(
     `Example app listening at http://localhost:${port}`,
